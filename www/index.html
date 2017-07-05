@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PromoZone&reg;</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!-- see http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag -->
+    <link rel="stylesheet" type="text/css" href="css/font-awesome/css/font-awesome.min.css">
+   <!-- <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="css/global.css">
+    <link rel="stylesheet" type="text/css" href="css/slideme.css">
+    <style>
+        /* following two viewport lines are equivalent to the meta viewport statement above, needed for Windows */
+        /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html and http://dev.w3.org/csswg/css-device-adapt/ */
+        @-ms-viewport {
+            width: 100vw;
+            zoom: 100%;
+        }
+        @viewport {
+            width: 100vw;
+            zoom: 100%;
+        }
+        @-ms-viewport {
+            user-zoom: fixed;
+        }
+        @viewport {
+            user-zoom: fixed;
+        }
+    </style>
+    <!--[if gte IE 9]> <style type="text/css"> .gradient { filter: none; } </style> <![endif]-->
+    <script src="js/app.js"></script><!-- recommended location of your JavaScript code relative to other JS files -->
+    <script src="js/init-app.js"></script>      <!-- for your init code, see README and file comments for details -->
+    <script src="xdk/init-dev.js"></script><!-- normalizes device and document ready events, see README for details -->
+    <!--<script src="js/bootstrap.min.js"></script>-->
+    <!--<script src="js/jquery-2.1.4.min.js"></script>-->
+    <!--<script src="js/jquery.mobile-1.4.5.min.js"></script>-->
+    
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+    <script type="text/javascript" src="cordova.js"></script>
+    
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+
+    <!--<script src="http://code.ionicframework.com/nightly/js/ionic.bundle.js"></script>
+    <script src="https://cdn.rawgit.com/driftyco/ng-cordova/master/dist/ng-cordova.min.js"></script>
+    <script src="https://cdn.rawgit.com/nraboy/ng-cordova-oauth/master/dist/ng-cordova-oauth.min.js"></script>-->
+
+    
+    <!--<script type="text/javascript" src="cordova_plugins.js"></script>-->
+</head>
+
+<body>
+
+    <!--==========================================================================
+                                        LOGIN
+    ========================================================================== --> 
+
+    <!--************************** Header ************************************ -->
+    <!--<div ng-app="facebookApp">
+        <div ng-controller="mainCtrl">-->
+            <!--COMENTADO POR FERNANDO VILLARRUEL
+                <div  data-role="page" class="" id="ingreso" data-title="">
+                <div id="header">
+                    <div id="logo">
+                        <a href="#panel"><img src="css/img/logo.png"></a>
+                    </div>
+                </div>
+
+
+                <div role="main" class="back" data-role="none">
+                    <div id="img"> <img src="css/img/girl.png"  width="100%"> </div>
+
+                    
+
+                    <div id="ingresoForm">
+
+                            <label for="filtertext" class="fa fa-user red f16 w100 center"> Ingresa con tu usuario y contraseña </label>
+                            <input type="email" id="lngusuario" name="lngusuario" placeholder="Correo electrónico">
+                            <input type="password" id="lngclave" name="lngclave"  placeholder="Contraseña">
+                            <button id="sesion">Ingresar</button>
+                        
+                            <button onclick="login()"><span class="fa fa-facebook-official"></span> Ingresar con Facebook</button>
+                            
+                            <a onclick="javascript:window.location.hash='#registro'">Registrarme</a>&nbsp;|&nbsp;
+                            <a class="exitapp" onclick="javascript:navigator.app.exitApp();">Salir</a><br>
+                         <a onclick="javascript:window.location.hash='#recuperar'">Recuperar contrasena</a>
+                    </div>
+
+                    
+
+                </div>
+            </div>
+
+        
+    <!--==========================================================================
+                                        RECUPERAR CONTRASENA    
+    ========================================================================== 
+
+    <!--************************** Header ************************************ 
+
+            <div  data-role="page" class="" id="recuperar" data-title="">
+                <div id="header">
+                    <div id="logo">
+                        <a href="#panel"><img src="css/img/logo.png"></a>
+                    </div>
+                </div>
+
+                
+
+                <div role="main" class="back" data-role="none">
+                    <div id="img"> <img src="css/img/girl.png"  width="100%"> </div>
+
+                    
+
+                    <div id="ingresoForm">
+
+                            <label for="filtertext" class="fa fa-user red f16 w100 center"> Ingresa con tu correo electronico </label>
+                            <input type="email" id="correo" name="correo" placeholder="Correo electrónico">
+                    
+                            <button onclick="recuperar()">Recuperar</button>
+                            <a onclick="javascript:window.location.hash='#ingreso'">Regresar</a>&nbsp;|&nbsp;
+                        
+                    </div>
+
+                    
+
+                </div>
+            </div>
+    
+            <!--==========================================================================
+                                                REGISTRO
+            ========================================================================== 
+
+            <div  data-role="page" class="" id="registro" data-title="">
+                <div id="header">
+                    <div id="logo">
+                        <a href="#panel"><img src="css/img/logo.png"></a>
+                    </div>
+                </div>
+
+
+                <div role="main" class="back" data-role="none">
+                    <div id="img"> <img src="css/img/girl.png"  width="100%"> </div>
+
+                    
+
+                    <div id="ingresoForm">
+
+                            <label for="filtertext" class="fa fa-user red f16 w100 center"> Completa los siguientes campos </label>
+                            <input type="text" id="regnombre" name="regnombre"  placeholder="Nombre">
+                            <input type="email" id="regusuario" name="regusuario" placeholder="Correo electrónico">
+                            <input type="password" id="regclave" name="regclave"  placeholder="Contraseña">
+                            <button onclick="javascript:registrarUsuario()">Registrarme</button>
+                            <button onclick="javascript:cancelarRegistro()">Cancelar</button>
+
+                    </div>
+
+                    
+
+                </div>
+            </div>-->
+
+            <!--==========================================================================
+                                                SELECCIONE ESTADO
+            ========================================================================== -->  
+
+            <!--****************************** Header ******************************** -->
+
+            <div  data-role="page"  id="estados" data-url="estados">
+                <div id="header">
+                    <div id="logo"> 
+                        <a href="#panel"><img src="css/img/logo.png"></a>
+                    </div>
+                    <a id="ahead" href="#menu" class="fa fa-bars fa-2x"><br>
+                        <span class="f14">Menu</span>
+                    </a> 
+                    <!--COMENTADO POR FERNANDO VILLARRUEL
+                    <a id="ahead" href="#favorList" class="fa fa-star-o fa-2x lmFavorito"><br>
+                        <span class="f14">Mis favoritos</span>
+                    </a> -->
+                </div>
+
+                <!-- ************************** Busqueda ***************************** -->
+
+                <div id="search">
+                    <div id="busqueda">
+                        <input data-role="none" class="field srcMain" value="" type="text" placeholder="Restaurantes, Bares, Servicios, etc"/>
+                        <a data-role="none" value="Enhanced" class="btn-busqueda" type="button" onclick="filtrar()"> <span class="fa fa-search fa fa-lg"></span> </a> 
+                    </div>
+                </div>
+
+                <!-- **************************** Contenido **************************** -->
+
+                <div role="main" class="back" data-role="none">
+                    <div id="img"> <img src="css/img/girl.png"  width="100%"> </div>
+
+                    <!-- Seleccione su estado -->
+
+                    <div id="selectEstado">
+                        <form>
+                            <div data-role="none" style="position: absolute; float: left; width: 100%; bottom: 0px;">
+                                <label for="filtertext" class="fa fa-crosshairs red f16 w100 center"> &nbsp;Selecciona tu estado </label>
+                                <select id="select-state" name="select-state" class="filterable-select">
+                                    <option value='0' selected=true>Selecciona un estado</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- /Seleccione su estado --> 
+
+                </div>
+
+                <!-- ************************** Menu **************************************** -->
+
+                <div data-role="panel" data-position="right" data-position-fixed="true" data-display="overlay" data-theme="a" id="menu">
+                    <ul data-role="listview">
+                        <li class="exitapp" onClick="javascript:navigator.app.exitApp();" data-icon="delete"><a href="#" data-rel="close">Cerrar aplicación</a></li>
+                        <!--<li onClick="javascript:salir();" data-icon="delete"><a href="#" data-rel="close">Logout</a></li>-->
+                        <li onClick="javascript:refrescarListaPromociones(1, 0);"> <a href="#"> <span class="fa fa-home">&nbsp;&nbsp;</span> Regresar al inicio </a> </li>
+                        <li onClick="javascript:cambiarEstado();"> <a href="#"><span class="fa fa-crosshairs">&nbsp;&nbsp;</span> Cambiar de estado </a> </li>
+                        <li class="buscaCercano" onClick="javascript:refrescarListaPromociones(categoriaSeleccionada, 1);"> <a href="#"><span class="fa fa-map-marker">&nbsp;&nbsp;</span>Buscar establecimientos <br/>
+                            <span style="margin-left:1em;">cercanos a mi posición</span></a> 
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!--==========================================================================
+                                            LISTA DE PROMOCIONES
+            ========================================================================== -->  
+
+            <!--****************************** Header ******************************** -->
+
+            <div  data-role="page" class="" id="listapromociones" data-title="">
+                <div id="header">
+                    <div id="logo"> <a href="#panel"> <img src="css/img/logo.png"> </a> </div>
+                    <a id="ahead" href="#menu2" class="fa fa-bars fa-2x"><br>
+                        <span class="f14">Menu</span>
+                    </a>
+                    <!--COMENTADO POR FERNANDO VILLARRUEL
+                    <a id="ahead" href="#favorList" class="fa fa-star-o fa-2x lmFavorito"><br>
+                        <span class="f14">Mis favoritos</span>
+                    </a> -->
+                </div>
+
+                <!-- ************************** Busqueda **************************************** -->
+
+                <div id="search">
+                    <div id="busqueda">
+                        <input data-role="none" class="field srcMain" value="" type="text" placeholder="Restaurantes, Bares, Servicios, etc">
+                        <a data-role="none" value="Enhanced" class="btn-busqueda" type="button" onclick="filtrar()"> <span class="fa fa-search fa fa-lg"></span> </a> 
+                    </div>
+                </div>
+
+                <!-- ***************************** Categorias *********************************** -->
+
+                <div id="navegacion">
+                        <ul>
+                            <li id="item" onClick="javascript:refrescarListaPromociones(1, 0);"> <a id="abutton" href="#" class="fa ct1 fa-shopping-cart fa-lg"><br>
+                                <span class="f9">Tiendas</span> </a>
+                            </li>
+                            <div></div>
+                            <li id="item" onClick="javascript:refrescarListaPromociones(2, 0);"> <a id="abutton" href="#" class="fa ct2 fa-cutlery fa-lg"><br>
+                                <span class="f9">Bares & Restaurantes</span> </a>
+                            </li>
+                            <div></div>
+                            <li id="item" onClick="javascript:refrescarListaPromociones(3, 0);"> <a id="abutton" href="#" class="fa ct3 fa-users fa-lg"><br>
+                                <span class="f9">Servicios varios</span> </a> 
+                            </li>
+                            <div></div>
+                            <li id="item" onClick="javascript:refrescarListaPromociones(4, 0);"> <a id="abutton" href="#" class="fa ct4 fa-hospital-o fa-lg"><br>
+                                <span class="f9">Hoteles</span> </a> 
+                            </li>
+                            <div></div>
+                            <li id="item" onClick="javascript:refrescarListaPromociones(5, 0);"> <a id="abutton" href="#" class="fa ct5 fa-smile-o fa-lg"><br>
+                                <span class="f9">Entretenimiento</span> </a>
+                            </li>
+                        </ul>
+                </div>
+                <hr class="red">
+
+                <!-- ************************** Tipo Categoria ************************************ -->
+
+                <div> 
+                    <h2 class="f16" style="text-shadow: none !important;" id="tituloCategoria"></h2>
+                </div>
+
+                <!-- ******************************* Contenido ************************************ -->
+
+                <div role="main" class="" data-role="none" id="listadoPromociones"> </div>
+
+                <!-- ************************** Menu  ************************************ -->
+
+                <div data-role="panel" data-position="right" data-position-fixed="true" data-display="overlay" data-theme="a" id="menu2">
+                    <ul data-role="listview">
+                        <li class="exitapp" onClick="javascript:navigator.app.exitApp();" data-icon="delete"><a href="#" data-rel="close">Cerrar aplicación</a></li>
+                        <!--<li onClick="javascript:salir();" data-icon="delete"><a href="#" data-rel="close">Logout</a></li>-->
+                        <li onClick="javascript:refrescarListaPromociones(1, 0);"> <a href="#"> <span class="fa fa-home">&nbsp;&nbsp;</span> Regresar al inicio </a> </li>
+                        <li onClick="javascript:cambiarEstado();"> <a href="#location"><span class="fa fa-crosshairs">&nbsp;&nbsp;</span> Cambiar de estado </a> </li>
+                        <li class="buscaCercano" onClick="javascript:refrescarListaPromociones(categoriaSeleccionada, 1);"> <a href="#"><span class="fa fa-map-marker">&nbsp;&nbsp;</span>Buscar establecimientos <br/>
+                            <span style="margin-left:1em;">cercanos a mi posición</span></a> 
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <!--==========================================================================
+                                            LISTA DE FAVORITOS
+            ========================================================================== -->
+
+            <!--************************** Header ************************************ -->
+
+            <div  data-role="page" class="" id="listafavoritos" data-title="">
+                <div id="header">
+                    <div id="logo"> <a href="#panel"> <img src="css/img/logo.png"> </a> </div>
+                    <a id="ahead" href="#menu3" class="fa fa-bars fa-2x"><br>
+                        <span class="f14">Menu</span>
+                    </a>
+                </div>
+
+                <!-- ************************** Busqueda ************************* -->
+
+                <div id="search">
+                    <div id="busqueda">
+                        <input data-role="none" class="field srcMain" value="" type="text" placeholder="Restaurantes, Bares, Servicios, etc">
+                        <a data-role="none" value="Enhanced" class="btn-busqueda" type="button" onclick="filtrar()"> <span class="fa fa-search fa fa-lg"></span> </a> 
+                    </div>
+                </div>
+
+                <!-- ************************** Categorias ************************************ -->
+
+                <div id="navegacion">
+                    <ul>
+                        <li id="item" onClick="javascript:refrescarListaPromociones(1, 0);"> <a id="abutton" href="#" class="fa ct1 fa-shopping-cart fa-lg"><br>
+                            <span class="f9">Tiendas</span> </a>
+                        </li>
+                        <div></div>
+                        <li id="item" onClick="javascript:refrescarListaPromociones(2, 0);"> <a id="abutton" href="#" class="fa ct2 fa-cutlery fa-lg"><br>
+                            <span class="f9">Bares & Restaurantes</span> </a>
+                        </li>
+                        <div></div>
+                        <li id="item" onClick="javascript:refrescarListaPromociones(3, 0);"> <a id="abutton" href="#" class="fa ct3 fa-users fa-lg"><br>
+                            <span class="f9">Servicios varios</span> </a>
+                        </li>
+                        <div></div>
+                        <li id="item" onClick="javascript:refrescarListaPromociones(4, 0);"> <a id="abutton" href="#" class="fa ct4 fa-hospital-o fa-lg"><br>
+                            <span class="f9">Hoteles</span> </a> 
+                        </li>
+                        <div></div>
+                        <li id="item" onClick="javascript:refrescarListaPromociones(5, 0);"> <a id="abutton" href="#" class="fa ct5 fa-smile-o fa-lg"><br>
+                            <span class="f9">Entretenimiento</span> </a>
+                        </li>
+                    </ul>
+                </div>
+                <hr class="red">
+
+                <!-- ************************** Tipo ctegoria ********************************* -->
+
+                <div> 
+                    <h2 class="f16" style="text-shadow: none !important;" id="tituloCategoriaFavorito"></h2>
+                </div>
+
+                <!-- ************************** Contenido ************************************* -->
+
+                    <div role="main" class="" data-role="none" id="listadofavoritos"> </div>
+
+                <!-- ******************************* Menu  ************************************ -->
+
+                <div data-role="panel" data-position="right" data-position-fixed="true" data-display="overlay" data-theme="a" id="menu3">
+                    <ul data-role="listview">
+                        <li class="exitapp" onClick="javascript:navigator.app.exitApp();" data-icon="delete"><a href="#" data-rel="close">Cerrar aplicación</a></li>
+                        <!--<li onClick="javascript:salir();" data-icon="delete"><a href="#" data-rel="close">Logout</a></li>-->
+                        <li onClick="javascript:refrescarListaPromociones(1, 0);"> <a href="#"> <span class="fa fa-home">&nbsp;&nbsp;</span> Regresar al inicio </a> </li>
+                        <li onClick="javascript:cambiarEstado();"> <a href="#location"><span class="fa fa-crosshairs">&nbsp;&nbsp;</span> Cambiar de estado </a> </li>
+                        <li class="buscaCercano" onClick="javascript:refrescarListaPromociones(categoriaSeleccionada, 1);"> <a href="#"><span class="fa fa-map-marker">&nbsp;&nbsp;</span>Buscar establecimientos <br/>
+                            <span style="margin-left:1em;">cercanos a mi posición</span></a> 
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <!--==========================================================================
+                                            DETALLE PROMOCION
+            ========================================================================== -->
+
+            <!--************************** Header **************************************** -->
+
+            <div  data-role="page" class="" id="descripcionpromocion" data-title="">
+                <div id="header">
+                    <div id="logo"> <a href="#panel"> <img src="css/img/logo.png"> </a> </div>
+                    <a id="ahead" href="#menu4" class="fa fa-bars fa-2x"><br>
+                        <span class="f14">Menu</span>
+                    </a>
+                    <!--COMENTADO POR FERNANDO VILLARRUEL
+                    <a id="dpahead" href="#" onclick="javascript:anadirFavorito()" class="fa fa-star-o fa-2x"><br>
+                        <span id="lblahead" class="f14">Añadir a favoritos</span>
+                    </a>-->
+                </div>
+
+                <!-- ************************** Busqueda ********************************* -->
+
+                <div id="search">
+                    <div id="busqueda">
+                        <input data-role="none" class="field srcMain" value="" type="text" placeholder="Restaurantes, Bares, Servicios, etc">
+                        <a data-role="none" value="Enhanced" class="btn-busqueda" type="button" onclick="filtrar()"> <span class="fa fa-search fa fa-lg"></span> </a> 
+                    </div>
+                </div>
+
+                <!-- ************************** Categorias ******************************* -->
+
+                <div id="navegacion">
+                    <ul>
+                        <li id="item" onClick="javascript:refrescarListaPromociones(1, 0);"> <a id="abutton" href="#" class="fa ct1 fa-shopping-cart fa-lg"><br>
+                            <span class="f9">Tiendas</span> </a>
+                        </li>
+                        <div></div>
+                        <li id="item" onClick="javascript:refrescarListaPromociones(2, 0);"> <a id="abutton" href="#" class="fa ct2 fa-cutlery fa-lg"><br>
+                            <span class="f9">Bares & Restaurantes</span> </a>
+                        </li>
+                        <div></div>
+                        <li id="item" onClick="javascript:refrescarListaPromociones(3, 0);"> <a id="abutton" href="#" class="fa ct3 fa-users fa-lg"><br>
+                            <span class="f9">Servicios varios</span> </a> 
+                        </li>
+                        <div></div>
+                        <li id="item" onClick="javascript:refrescarListaPromociones(4, 0);"> <a id="abutton" href="#" class="fa ct4 fa-hospital-o fa-lg"><br>
+                            <span class="f9">Hoteles</span> </a> 
+                        </li>
+                        <div></div>
+                        <li id="item" onClick="javascript:refrescarListaPromociones(5, 0);"> <a id="abutton" href="#" class="fa ct5 fa-smile-o fa-lg"><br>
+                            <span class="f9">Entretenimiento</span> </a>
+                        </li>
+                    </ul>
+                </div>
+                <hr class="red">
+
+                <!-- ************************** Regresar ************************************ -->
+
+                <div id="tituloRegresar" onClick="javascript:refrescarListaPromociones(categoriaSeleccionada, 0);">
+                    <h2 class="f16" style="text-shadow: none !important; color: white !important; padding-left: 0.5em;"> <i class="fa fa-reply"></i> REGRESAR A LISTADO </h2>
+                </div>
+
+                <!-- ************************** Logo  ************************************ -->
+
+                <div role="main" class="" data-role="none" id="descLogo"> </div>
+
+                <!-- ************************* Galeria  ********************************** -->
+
+                <div role="main" class="" data-role="none" id="galeriaimg">
+                    <ul id="galeria_promocion" class="slideme">
+                    </ul>
+                </div>
+
+                <!-- ********************* Descripción y boton mapa  ********************* -->
+
+                <div role="main" class="" data-role="none" id="divDesc">
+                    <div role="main" class="" data-role="none" id="descProm"> </div>
+                        <div id="descMap" class="" data-role="none" role="main"> 
+                            <i class="fa fa-map-marker fa-3x"></i><br> ¿Como llegar? 
+                        </div>
+                    <div style="" role="main" class="" data-role="none" id="descEstab"> </div>
+                </div>
+
+                <!-- ************************** Menu  ************************************ -->
+
+                <div data-role="panel" data-position="right" data-position-fixed="true" data-display="overlay" data-theme="a" id="menu4">
+                    <ul data-role="listview">
+                        <li class="exitapp" onClick="javascript:navigator.app.exitApp();" data-icon="delete"><a href="#" data-rel="close">Cerrar aplicación</a></li>
+                        <!--<li onClick="javascript:salir();" data-icon="delete"><a href="#" data-rel="close">Logout</a></li>-->
+                        <li onClick="javascript:refrescarListaPromociones(1, 0);"> <a href="#"> <span class="fa fa-home">&nbsp;&nbsp;</span> Regresar al inicio </a> </li>
+                        <li onClick="javascript:cambiarEstado();"> <a href="#"><span class="fa fa-crosshairs">&nbsp;&nbsp;</span> Cambiar de estado </a> </li>
+                        <li class="buscaCercano" onClick="javascript:refrescarListaPromociones(categoriaSeleccionada, 1);"> <a href="#"><span class="fa fa-map-marker">&nbsp;&nbsp;</span>Buscar establecimientos <br/>
+                            <span style="margin-left:1em;">cercanos a mi posición</span></a> 
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ************************** Loadin  ************************************ -->
+            <div id="loading" style="display: none; position: fixed; z-index: 1000; top: 0; left: 0; height: 100%; width: 100%; background: rgba( 255, 255, 255, .8 ) url('http://i.stack.imgur.com/FhHRx.gif') 50% 50% no-repeat;"></div>  
+        <!--</div>
+    </div>-->
+    
+    <script src="js/main.js"></script>
+    <script src="js/localstorage.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/promodetalle.js"></script>
+    <script src="js/promolista.js"></script>
+    <!--COMENTADO POR FERNANDO VILLARRUEL
+    <script src="js/destacadolista.js"></script>
+    <script src="js/destacadolista.js"></script>-->
+    <script src="js/slideme.js"></script>
+    <script src="js/ubicacion.js"s></script>
+    <script src="js/estado.js"></script>
+    <script src="js/filtros.js"></script>
+    <script src="js/facebook.js"></script>
+</body>
+</html>
