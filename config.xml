@@ -69,7 +69,7 @@
     <icon platform="android" src="package-assets/logo96.png" density="xhdpi" width="96" height="96"/>
     <icon platform="ios" src="package-assets/logo29.png" width="29" height="29"/>
     <icon platform="ios" src="package-assets/logo58.png" width="58" height="58"/>
-    <icon platform="ios" src="package-assets/logo87.png" width="87" height="87"/>
+    <!--<icon platform="ios" src="package-assets/logo87.png" width="87" height="87"/>-->
     <icon platform="ios" src="package-assets/logo60.png" width="60" height="60"/>
     <icon platform="ios" src="package-assets/logo120.png" width="120" height="120"/>
     <icon platform="ios" src="package-assets/logo180.png" width="180" height="180"/>
@@ -83,7 +83,7 @@
     <icon platform="ios" src="package-assets/logo144.png" width="144" height="144"/>
     <icon platform="ios" src="package-assets/logo50.png" width="50" height="50"/>
     <icon platform="ios" src="package-assets/logo100.png" width="100" height="100"/>
-    <icon platform="ios" src="package-assets/logo167x167.png" width="167" height="167"/>
+    <!--<icon platform="ios" src="package-assets/logo167x167.png" width="167" height="167"/>-->
 
     <config-file platform="android" parent="/manifest/application" mode="merge"> 
         <activity android:launchMode="singleTop" />
